@@ -1,29 +1,3 @@
-"""####FIRST TIME RUN
-#from scapy.all import sniff
-
-#def packet_callback(packet):
- #   print(packet.summary())
-
-#sniff(prn=packet_callback, count=20)
-
-#####SECOND TIME RUN
-from scapy.all import sniff
-from feature_extractor import update_flow, flows, compute_features
-from predictor import predict_flow
-
-def packet_callback(packet):
-    update_flow(packet)
-
-    # After some packets, evaluate flows
-    for fid, pkts in list(flows.items()):
-        if len(pkts) > 20:  # enough packets to judge
-            features = compute_features(pkts)
-            result = predict_flow(features)
-            print(f"[ALERT] Flow {fid} → {result}")
-            flows.pop(fid)
-
-sniff(prn=packet_callback)
-"""
 from scapy.all import sniff
 from feature_extractor import update_flow, flows, compute_features
 from predictor import predict_flow
@@ -60,3 +34,4 @@ def packet_callback(pkt):
 if __name__ == "__main__":
     print("=== ML NIDS started! Press Ctrl+C to stop ===")
     sniff(prn=packet_callback)
+
