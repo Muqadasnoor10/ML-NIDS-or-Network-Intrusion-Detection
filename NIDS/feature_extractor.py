@@ -1,45 +1,3 @@
-"""from collections import defaultdict
-import time
-
-flows = defaultdict(list)
-
-def get_flow_id(pkt):
-    if 'IP' in pkt and 'TCP' in pkt:
-        ip = pkt['IP']
-        tcp = pkt['TCP']
-        return (ip.src, ip.dst, tcp.sport, tcp.dport, 'TCP')
-    return None
-
-
-def update_flow(pkt):
-    flow_id = get_flow_id(pkt)
-    if flow_id:
-        flows[flow_id].append((time.time(), len(pkt)))
-
-
-def compute_features(flow_packets):
-    times = [p[0] for p in flow_packets]
-    sizes = [p[1] for p in flow_packets]
-
-    duration = max(times) - min(times)
-    total_packets = len(sizes)
-    total_bytes = sum(sizes)
-
-    if duration == 0:
-        duration = 1
-
-    bytes_per_sec = total_bytes / duration
-    packets_per_sec = total_packets / duration
-
-    return {
-        "Flow Duration": duration,
-        "Total Fwd Packets": total_packets,
-        "Total Length of Fwd Packets": total_bytes,
-        "Flow Bytes/s": bytes_per_sec,
-        "Flow Packets/s": packets_per_sec
-    }
-"""
-
 from collections import defaultdict
 import time
 import numpy as np
@@ -128,3 +86,4 @@ def compute_features(flow_packets):
         "Packet Length Min": min_pkt_len,
         "Total Packets": total_packets
     }
+
